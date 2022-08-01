@@ -1,0 +1,36 @@
+.container{
+    width: 400px;
+    height: max-content;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    color: #ddd;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px #000;
+    border-radius: 5px;
+    display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     text-transform: capitalize;
+     .avatar{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 20px 0;
+        background-color: cadetblue;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+       
+     }
+
+     h3{
+        margin: 0 0;
+    }
+    a{
+        margin: 30px 0;
+        cursor: pointer;
+    }
+}

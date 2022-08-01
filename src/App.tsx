@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect } from "react";
+import { FirstLayout } from "./Layouts";
+import { Login, Profile } from "./Components";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "./Store";
+import { setLastUserData } from "./Store/userStore/action";
+import { LocalStorageService } from "./Services";
 function App() {
+  const { token } = useSelector((state: State) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const userDataRaw = LocalStorageService.getKey("user");
+    if (!userDataRaw) return;
+    const parsedUserData = JSON.parse(userDataRaw);
+    dispatch(setLastUserData(parsedUserData));
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <FirstLayout>{token ? <Profile /> : <Login />}</FirstLayout>
+    </>
   );
 }
 
